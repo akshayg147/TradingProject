@@ -12,6 +12,8 @@ def upload(request):
         user = request.POST['name']
         docfile = request.FILES.get('file')
         timee = int(request.POST['timeframe'])
+        User = Document.object.create(user=user,docfile=docfile,time=timee)
+        User.save()
         data = pd.read_csv(docfile, engine="pyarrow")
         #length of data so to get the range of for 'for' loop
         x = len(data.HIGH)
